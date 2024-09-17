@@ -8,6 +8,12 @@ public class Day01 {
         }
         return total;
     }
+
+    public static int diff21(int n){
+        int diff;
+        diff = 21 - n;
+        return diff;
+    }
     public static void main(String[] args) {
 
         // // primitive data types
@@ -83,5 +89,8 @@ public class Day01 {
 
         // sumDouble
         System.out.println(sumDouble(3, 3));
+
+        //near21
+        System.out.println(diff21(15));
     }
 }
