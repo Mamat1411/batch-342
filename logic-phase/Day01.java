@@ -14,6 +14,17 @@ public class Day01 {
         diff = 21 - n;
         return diff;
     }
+
+    public static boolean nearHundred(int n){
+        int oneHundred = 100;
+        int twoHundred = 200;
+        int diff100 = oneHundred - n;
+        int diff200 = twoHundred - n;
+        if (diff100 <= 10 || diff200 <= 10) {
+            return true;
+        }
+        return false;
+    }
     public static void main(String[] args) {
 
         // // primitive data types
@@ -90,7 +101,12 @@ public class Day01 {
         // sumDouble
         System.out.println(sumDouble(3, 3));
 
-        //near21
+        // near21
         System.out.println(diff21(15));
+
+        // nearHundred
+        System.out.println(nearHundred(190));
+
+        
     }
 }
