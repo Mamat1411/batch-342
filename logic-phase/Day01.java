@@ -25,6 +25,15 @@ public class Day01 {
         }
         return false;
     }
+
+    public static String frontBack(String str){
+        if (str.length() < 2) {
+            return str;
+        }
+
+        String middleString = new StringBuilder(str).deleteCharAt(0).deleteCharAt(str.length()-2).toString();
+        return str.charAt(str.length()-1) + (str.length() == 2 ? "" : middleString) + str.charAt(0);
+    }
     public static void main(String[] args) {
 
         // // primitive data types
@@ -99,14 +108,15 @@ public class Day01 {
         // System.out.println(isTrue);
 
         // sumDouble
-        System.out.println(sumDouble(3, 3));
+        // System.out.println(sumDouble(3, 3));
 
-        // near21
-        System.out.println(diff21(15));
+        // // near21
+        // System.out.println(diff21(15));
 
-        // nearHundred
-        System.out.println(nearHundred(190));
+        // // nearHundred
+        // System.out.println(nearHundred(190));
 
-        
+        // frontBack
+        System.out.println(frontBack("code"));
     }
 }
