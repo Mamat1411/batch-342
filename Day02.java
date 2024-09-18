@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Day02 {
 
     public static void whatGen(int year) {
@@ -50,6 +52,17 @@ public class Day02 {
 
         System.out.println("Nilai minimum dari angka " + a + ", " + b + ", " + c + ", " + d + " adalah " + min);
         System.out.println("Nilai maksimum dari angka " + a + ", " + b + ", " + c + ", " + d + " adalah " + max);
+    }
+
+    public static boolean in3050(int a, int b){
+        if ((a >= 30 && a <= 40) || (b >= 30 && b <= 40)) {
+            return true;
+        }
+
+        if ((a >= 40 && a <= 50) || (b >= 40 && b <= 50)) {
+            return true;
+        }
+        return false;
     }
 
     @SuppressWarnings("unused")
@@ -105,6 +118,56 @@ public class Day02 {
         /*
          * 4. Buatlah function yang menentukan apakah 2 buah angka yang menjadi
          * parameter, berada diantara angka 30 - 50, mengembalikan true or false
+         */
+        int a = 40;
+        int b = 50;
+        System.out.println("Apakah angka " + a + " dan " + b + " berada dalam range 30 - 50? " + in3050(a, b));
+
+        // for loop
+        int[] arr = {1, 2, 3, 4};
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+
+        // foreach loop
+        for (int i : arr) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+        
+        // while loop
+        int i = 0;
+        while (i < arr.length) {
+            System.out.print(arr[i] + " ");
+            i++;
+        }
+        System.out.println();
+
+        // do while loop
+        i = 0;
+        do {
+            System.out.print(arr[i] + " ");
+            i++;
+        } while (i < arr.length);
+
+        Scanner inputScanner = new Scanner(System.in);
+        System.out.print("Tentukan panjang Array yang diinginkan: ");
+        int size = inputScanner.nextInt();
+        int[] arrays = new int[size];
+        for (int j = 0; j < size; j++) {
+            System.out.print("Masukkan array ke - " + j + ": ");
+            arrays[j] = inputScanner.nextInt();
+        }
+
+        for (int j = 0; j < arrays.length; j++) {
+            System.out.print(arrays[j] + " ");
+        }
+        inputScanner.close();
+
+        /*
+         * 5. Buatlah fungsi deret fibonaci. paramter merupakan panjang deret angka yang tercetak
+         * 6. buatlah fungsi faktorial
          */
     }
 }
