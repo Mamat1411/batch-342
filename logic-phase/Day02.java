@@ -89,7 +89,7 @@ public class Day02 {
         System.out.println(" adalah " + number);
     }
 
-    public static void matrix(int size){
+    public static void matrix(int size) {
         int begin = 1;
         for (int i = 1; i <= size; i++) {
             for (int j = 1; j <= size; j++) {
@@ -217,7 +217,8 @@ public class Day02 {
          * fibonacci adalah deret angka yang menjumlahkan angka pertama dan angka kedua
          * menjadi angka ketiga dan seterusnya. contoh = 1 1 2 3 5 8 13 21 34
          * 
-         * faktorial adalah perkalian deret dimana N dikalikan dengan N-1. contoh 5*4*3*2*1
+         * faktorial adalah perkalian deret dimana N dikalikan dengan N-1. contoh
+         * 5*4*3*2*1
          * 
          * 7. Buatlah fungsi generate matrix dengan size sebagai argument nya
          */
