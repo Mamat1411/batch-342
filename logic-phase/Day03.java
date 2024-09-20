@@ -126,8 +126,8 @@ public class Day03 {
         return day;
     }
 
-    public static Object dayNumber(String day) {
-        Object dayNum;
+    public static int dayNumber(String day) {
+        int dayNum;
         switch (day) {
             case "Sunday":
                 dayNum = 1;
@@ -151,10 +151,34 @@ public class Day03 {
                 dayNum = 7;
                 break;
             default:
-                dayNum = "Invalid";
+                dayNum = 0;
                 break;
         }
         return dayNum;
+    }
+
+    public static void whatDay(String day) {
+        int dayBeforeYesterday = dayNumber(day) - 2;
+        int yesterday = dayNumber(day) - 1;
+        int tomorrow = dayNumber(day) + 1;
+        int dayAfterTomorrow = dayNumber(day) + 2;
+        if (dayBeforeYesterday < 1) {
+            dayBeforeYesterday += 7;
+        }
+        if (yesterday < 1) {
+            yesterday += 7;
+        }
+        if (tomorrow > 7) {
+            tomorrow -= 7;
+        }
+        if (dayAfterTomorrow > 7) {
+            dayAfterTomorrow -= 7;
+        }
+        System.out.println("2 Days ago is " + dayName(dayBeforeYesterday));
+        System.out.println("Yesterday is " + dayName(yesterday));
+        System.out.println("Today is " + dayName(dayNumber(day)));
+        System.out.println("Tomorrow is " + dayName(tomorrow));
+        System.out.println("2 Days Later is " + dayName(dayAfterTomorrow));
     }
 
     public static void main(String[] args) {
@@ -162,26 +186,22 @@ public class Day03 {
         Scanner sc = new Scanner(System.in);
         System.out.print("Input Number : ");
         int inputNumber = sc.nextInt();
-        sc.close();
 
         /*
-        * Looping
-        *
-        * for loop structure:
-        * for(initial; condition; expression){
-        * statement;
-        * }
-        */
+         * Looping
+         *
+         * for loop structure:
+         * for(initial; condition; expression){
+         * statement;
+         * }
+         */
 
         // even number
         System.out.println("This is even number loop");
         int evenNumber = 0;
-        for (int i = 0; i < 10; i++) {
-        System.out.print(evenNumber + " ");
-        evenNumber += 2;
-        if (evenNumber > 10) {
-        break;
-        }
+        for (int i = 0; i < inputNumber; i++) {
+            evenNumber += 2;
+            System.out.print(evenNumber + " ");
         }
         System.out.println();
         System.out.println();
@@ -190,32 +210,32 @@ public class Day03 {
         System.out.println("This is 500-520 with 5 multiplier");
         int number500 = 500;
         for (int i = 0; i < number500; i++) {
-        System.out.print(number500 + " ");
-        number500 += 5;
-        if (number500 > 520) {
-        break;
-        }
+            System.out.print(number500 + " ");
+            number500 += 5;
+            if (number500 > 520) {
+                break;
+            }
         }
         System.out.println();
         System.out.println();
 
         // leap year
-        System.out.println("This is leap year");
+        System.out.println("These are leap years");
         int year = 2000;
         for (int i = 0; i < year; i++) {
-        if (year % 4 == 0) {
-        if (year % 100 == 0) {
-        if (year % 400 == 0) {
-        System.out.print(year + " ");
-        }
-        } else {
-        System.out.print(year + " ");
-        }
-        }
-        year++;
-        if (year > 2024) {
-        break;
-        }
+            if (year % 4 == 0) {
+                if (year % 100 == 0) {
+                    if (year % 400 == 0) {
+                        System.out.print(year + " ");
+                    }
+                } else {
+                    System.out.print(year + " ");
+                }
+            }
+            year++;
+            if (year > 2024) {
+                break;
+            }
         }
         System.out.println();
         System.out.println();
@@ -225,9 +245,9 @@ public class Day03 {
         int odd = 1;
         int even = 0;
         for (int i = 0; i < inputNumber; i++) {
-        even += 2;
-        System.out.println(odd + " + " + even + " = " + (odd + even));
-        odd += 2;
+            even += 2;
+            System.out.println(odd + " + " + even + " = " + (odd + even));
+            odd += 2;
         }
         System.out.println();
 
@@ -235,16 +255,16 @@ public class Day03 {
         System.out.println("This is factorial");
         int factorial = inputNumber;
         for (int i = 1; i <= factorial; i++) {
-        System.out.println(i + " factorial = " + factorial(i));
+            System.out.println(i + " factorial = " + factorial(i));
         }
         System.out.println();
 
         // Nested Loop
         for (int i = 0; i < 5; i++) {
-        for (int j = 0; j <= i; j++) {
-        System.out.print((j + 1) + " ");
-        }
-        System.out.println();
+            for (int j = 0; j <= i; j++) {
+                System.out.print((j + 1) + " ");
+            }
+            System.out.println();
         }
         System.out.println();
 
@@ -275,43 +295,56 @@ public class Day03 {
         System.out.println();
 
         /*
-        * While Loop
-        * while loop structures:
-        * init;
-        * while(condition){
-        * statement;
-        * expression;
-        * }
-        */
+         * While Loop
+         * while loop structures:
+         * init;
+         * while(condition){
+         * statement;
+         * expression;
+         * }
+         */
         System.out.println("This is while loop");
         int i = 100;
         int hundred = 0;
         while (i <= 500) {
-        hundred += i;
-        i += 100;
+            hundred += i;
+            i += 100;
         }
         System.out.print(hundred + " ");
         // System.out.println(hundred);
 
         /*
-        * Do While Loop
-        * do while loop structures:
-        * init;
-        * do{
-        * statement;
-        * expression;
-        * } while (condition);
-        */
+         * Do While Loop
+         * do while loop structures:
+         * init;
+         * do{
+         * statement;
+         * expression;
+         * } while (condition);
+         */
 
         /*
          * Dengan Menggunakan Switch Case buatlah 2 fungsi berikut
          * 1. dayName(int number). fungsi ini menerima inputan angka dan mengembalikan
-         * hari apa sesuai urutan angka tersebut
+         *      hari apa sesuai urutan angka tersebut
          * 2. dayNumber(String day). fungsi ini menerima inputan nama hari dan
-         * mengembalikan angka hari ke berapa
-         * hari dimulai dari senen
+         *      mengembalikan angka hari ke berapa
+         *      hari dimulai dari senen
+         * 3. Dengan memanfaatkan 2 fungsi diatas, buatlah function, dengan parameter day
+         *      sebagai string, yang mencetak kata2 sebagai berikut:
+         *      kemarin lusa adalah hari .......(2 hari sebelum parameter)
+         *      kemarin adalah hari.......(hari sebelum parameter)
+         *      hari ini adalah hari ........(didapat dari parameter)
+         *      besok adalah hari .......(hari setelah parameter)
+         *      besok lusa adalah hari ......... (2 hari setelah parameter)
+         * 4. buatlah function leapYear() dengan parameter year yang berfungsi untuk mencetak tahun2 kabisat 
+         *      mulai dari nilai yg diambil dari parameter, sampai tahun ini
+         * 5. buatlah function oddEvenAddition() dengan parameter number sebagai jumlah iterasi yang berfungsi 
+         *      untuk melakukan penjumlahan bilangan ganjil genap
          */
 
+        System.out.println();
+        
         System.out.print("Input Number : ");
         inputNumber = sc.nextInt();
         System.out.println(dayName(inputNumber));
@@ -320,6 +353,7 @@ public class Day03 {
         System.out.print("Input Day: ");
         String dayString = sc.nextLine();
         System.out.println(dayNumber(dayString));
+        whatDay(dayString);
         sc.close();
     }
 }
