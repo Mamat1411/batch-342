@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,5 +45,66 @@ public class Day06 {
         for (String string : anotherList) {
             System.out.print(string + " ");
         }
+        System.out.println();
+
+        String name = "Muhammad Mujahid";
+        String anotherName = "ABC";
+        System.out.println(name.compareTo(anotherName));
+        System.out.println(name.length());
+        System.out.println();
+
+        String s1 = String.valueOf('C');
+        String s2 = String.valueOf(10);
+        System.out.println(s1);
+        System.out.println(s1.getClass());
+        System.out.println(s2);
+        System.out.println(s2.getClass());
+
+        System.out.println(name + "\r " + anotherName);
+
+        String className = "Batch 342";
+        String subClass = className.substring(2);
+        String subSubClass = className.substring(2, 5);
+        System.out.println(subClass);
+        System.out.println(subSubClass);
+
+        String yapString = "minimum".replace("m", " ");
+        yapString = "minimum".replaceFirst("m", "n");
+        System.out.println(yapString);
+
+        String replacedString = "XSIS Mitra Utama BATCH 342 . aeljfaekfjsakl ! wlafjasldfkjal / alkjerlwjlk & wljerwkjewlr";
+        System.out.println(replacedString);
+        System.out.println(replacedString.replaceAll("[aA]", "*"));
+        System.out.println(replacedString.replaceAll("[^aA]", "*"));
+        System.out.println(replacedString.replaceAll("[a-zA-Z]", "*"));
+        System.out.println(replacedString.replaceAll("[^a-zA-Z]", "*"));
+        System.out.println(replacedString.replaceAll("[a-zA-Z&&[b-mB-M]]", "*"));
+        System.out.println(replacedString.replaceAll("[a-zA-Z&&[^b-mB-M]]", "*"));
+        System.out.println(replacedString.replaceAll("[0-9]", "*"));
+        System.out.println(replacedString.replaceAll("[^0-9]", "*"));
+        System.out.println(replacedString.replaceAll("[ .!/%]", "||"));
+        
+        String stringBener = replacedString.substring(0, 26);
+        System.out.println(stringBener);
+        System.out.println(stringBener.replace(" ", ""));
+        String[] arrStr = stringBener.split(" ");
+        System.out.println(Arrays.toString(arrStr));
+        String joinStr = "";
+        for (String string : arrStr) {
+            joinStr += string;
+        }
+        System.out.println(joinStr);
+        String strJoin = String.join(" ", arrStr);
+        System.out.println(strJoin);
+        char[] arrCharStr = stringBener.toCharArray();
+        System.out.println(arrCharStr);
+
+        String compareString = "xsis mitra utama batch 342";
+        System.out.println(stringBener);
+        System.out.println(compareString);
+        System.out.println("Equals: " + compareString.equals(stringBener));
+        System.out.println("Equals Ignore Case: " + compareString.equalsIgnoreCase(stringBener));
+        System.out.println("Contains: " + stringBener.contains("xsis"));
+        System.out.println("Contains: " + stringBener.contains("xsis".toUpperCase()));
     }
 }
