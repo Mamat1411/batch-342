@@ -17,7 +17,7 @@ public class Day06 {
 
         Map<Integer, String> variableMap = new HashMap<>();
         for (int i = 0; i < cars.size(); i++) {
-            variableMap.put(i, cars.get(i));
+        variableMap.put(i, cars.get(i));
         }
 
         System.out.println(variableMap);
@@ -40,10 +40,10 @@ public class Day06 {
         anotherMap.forEach((key, value) -> System.out.println(key + value));
         ArrayList<String> anotherList = new ArrayList<>();
         for (int i = 0; i < anotherMap.size(); i++) {
-            anotherList.add(anotherMap.get(i));
+        anotherList.add(anotherMap.get(i));
         }
         for (String string : anotherList) {
-            System.out.print(string + " ");
+        System.out.print(string + " ");
         }
         System.out.println();
 
@@ -83,7 +83,7 @@ public class Day06 {
         System.out.println(replacedString.replaceAll("[0-9]", "*"));
         System.out.println(replacedString.replaceAll("[^0-9]", "*"));
         System.out.println(replacedString.replaceAll("[ .!/%]", "||"));
-        
+
         String stringBener = replacedString.substring(0, 26);
         System.out.println(stringBener);
         System.out.println(stringBener.replace(" ", ""));
@@ -91,7 +91,7 @@ public class Day06 {
         System.out.println(Arrays.toString(arrStr));
         String joinStr = "";
         for (String string : arrStr) {
-            joinStr += string;
+        joinStr += string;
         }
         System.out.println(joinStr);
         String strJoin = String.join(" ", arrStr);
@@ -103,8 +103,10 @@ public class Day06 {
         System.out.println(stringBener);
         System.out.println(compareString);
         System.out.println("Equals: " + compareString.equals(stringBener));
-        System.out.println("Equals Ignore Case: " + compareString.equalsIgnoreCase(stringBener));
+        System.out.println("Equals Ignore Case: " +
+        compareString.equalsIgnoreCase(stringBener));
         System.out.println("Contains: " + stringBener.contains("xsis"));
-        System.out.println("Contains: " + stringBener.contains("xsis".toUpperCase()));
+        System.out.println("Contains: " +
+        stringBener.contains("xsis".toUpperCase()));
     }
 }
