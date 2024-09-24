@@ -60,5 +60,6 @@ public class Day04 {
         matrixSizable(col, row);
         System.out.println();
         sizableStarMatrix(col, row);
+        sc.close();
     }
 }
