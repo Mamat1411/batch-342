@@ -9,36 +9,36 @@ public class Day07 {
         return result;
     }
     public static void main(String[] args) throws Day07Exception {
-        // int x = 10;
-        // int y = 0;
-        // int z;
+        int x = 10;
+        int y = 0;
+        int z;
 
-        // z = x / y;
-        // System.out.println("z = " + z);
+        z = x / y;
+        System.out.println("z = " + z);
 
-        // try {
-        //     z = x / y;
-        //     System.out.println("z = " + z); 
-        // } catch (ArithmeticException e) {
-        //     String msg = e.getMessage();
-        //     System.out.println("An error has occured. The error is " + msg);
-        // }
+        try {
+            z = x / y;
+            System.out.println("z = " + z); 
+        } catch (ArithmeticException e) {
+            String msg = e.getMessage();
+            System.out.println("An error has occured. The error is " + msg);
+        }
 
-        // try {
-        //     z = x / y;
-        //     System.out.println("z = " + z);
-        // } catch (ArithmeticException e) {
-        //     throw new Day07Exception("Nothing can be Divided By Zero");
-        // }
+        try {
+            z = x / y;
+            System.out.println("z = " + z);
+        } catch (ArithmeticException e) {
+            throw new Day07Exception("Nothing can be Divided By Zero");
+        }
 
-        // try {
-        //     z = x / y;
-        //     System.out.println("z = " + z);
-        // } catch (Exception e) {
-        //     e.printStackTrace();
-        // } finally {
-        //     System.out.println("End");
-        // }
+        try {
+            z = x / y;
+            System.out.println("z = " + z);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            System.out.println("End");
+        }
 
         System.out.println(sum(1,2,3,4,5,6,7));
     }
