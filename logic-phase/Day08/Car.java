@@ -1,12 +1,12 @@
 package Day08;
 
 public class Car {
-    public String brand;
-    public String releaseYear;
-    public String transmission;
-    public Integer topSpeed;
-    public String color;
-    public Integer mileage;
+    private String brand;
+    private String releaseYear;
+    private String transmission;
+    private Integer topSpeed;
+    private String color;
+    private Integer mileage;
 
     public Car(){
 
@@ -18,6 +18,54 @@ public class Car {
         this.transmission = transmission;
         this.topSpeed = topSpeed;
         this.color = color;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getReleaseYear() {
+        return releaseYear;
+    }
+
+    public void setReleaseYear(String releaseYear) {
+        this.releaseYear = releaseYear;
+    }
+
+    public String getTransmission() {
+        return transmission;
+    }
+
+    public void setTransmission(String transmission) {
+        this.transmission = transmission;
+    }
+
+    public Integer getTopSpeed() {
+        return topSpeed;
+    }
+
+    public void setTopSpeed(Integer topSpeed) {
+        this.topSpeed = topSpeed;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public Integer getMileage() {
+        return mileage;
+    }
+
+    public void setMileage(Integer mileage) {
+        this.mileage = mileage;
     }
 
     public Integer drive(){
