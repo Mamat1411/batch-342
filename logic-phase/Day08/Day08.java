@@ -43,5 +43,16 @@ public class Day08 {
 
         Car secondCar = new Car("Porsche", "2014", "MT", 0, "Silver Black");
         System.out.println(secondCar.getBrand());
+
+        System.out.println();
+
+        Animal mammals = new Animal();
+        mammals.animalSound();
+
+        Cat britishCat = new Cat();
+        britishCat.animalSound();
+
+        Dog siberianDog = new Dog();
+        siberianDog.animalSound();
     }
 }
