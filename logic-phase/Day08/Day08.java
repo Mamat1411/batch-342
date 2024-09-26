@@ -50,6 +50,8 @@ public class Day08 {
         mammals.animalSound();
 
         Cat britishCat = new Cat();
+        britishCat.feet = "4 Feet";
+        System.out.println(britishCat.feet);
         britishCat.animalSound();
 
         Dog siberianDog = new Dog();

@@ -1,6 +1,6 @@
 package Day08;
 
-public class Car {
+public class Car implements Vehicle{
     private String brand;
     private String releaseYear;
     private String transmission;
@@ -68,23 +68,26 @@ public class Car {
         this.mileage = mileage;
     }
 
-    public Integer drive(){
+    @Override
+    public Integer drive() {
         mileage += 5;
-        topSpeed = 60;
         return mileage;
     }
 
-    public Integer accelerate(){
+    @Override
+    public Integer accelerate() {
         topSpeed += 40;
         return topSpeed;
     }
 
-    public Integer brake(){
-        topSpeed -= 10;
+    @Override
+    public Integer brake() {
+        topSpeed -= 20;
         return topSpeed;
     }
 
-    public Integer stop(){
+    @Override
+    public Integer stop() {
         topSpeed = 0;
         return topSpeed;
     }
