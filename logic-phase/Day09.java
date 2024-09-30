@@ -76,7 +76,16 @@ public class Day09 {
         System.out.println("End Date = " + dateTimeFormatter.format(endDate));
 
         // ChronoUnit
-        Long days = ChronoUnit.DAYS.between(startDate, endDate);
+        Long days = ChronoUnit.DAYS.between(endDate, startDate);
         System.out.println("The Difference are " + days + " days");
+
+        // Formatter
+        DateTimeFormatter expired = DateTimeFormatter.ofPattern("EEEE, dd MMMM yyyy");
+        LocalDate stCalendar = LocalDate.parse("2024-09-27");
+        System.out.println("Start = " + expired.format(stCalendar));
+        LocalDate eCalendar = LocalDate.parse("2024-09-20");
+        System.out.println("End = " + expired.format(eCalendar));
+
+        System.out.println(eCalendar.compareTo(stCalendar));
     }
 }
