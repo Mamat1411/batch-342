@@ -1,0 +1,11 @@
+.container {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#outer {
+    font-style: italic;
+}
+
+#inner {
+    font-style: normal;
+}
