@@ -19,9 +19,10 @@ public class Category extends BaseEntity {
 
     }
 
-    public Category(String name, String slug){
+    public Category(String name, String slug, String description){
         this.name = name;
         this.slug = slug;
+        this.description = description;
     }
     
     @Id
@@ -34,4 +35,7 @@ public class Category extends BaseEntity {
 
     @Column(name = "slug", length = 50, unique = true)
     private String slug;
+
+    @Column(name = "description")
+    private String description;
 }

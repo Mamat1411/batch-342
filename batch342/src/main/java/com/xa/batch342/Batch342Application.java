@@ -26,9 +26,9 @@ public class Batch342Application {
 	CommandLineRunner commandLineRunner(){
 		return args -> {
 			// Category Seeding
-			Category food = new Category("Food", "food");
-			Category beverage = new Category("Beverage", "beverage");
-			Category medicine = new Category("Medicine", "medicine");
+			Category food = new Category("Food", "food", "All kinds of food");
+			Category beverage = new Category("Beverage", "beverage", "All kinds of drinks");
+			Category medicine = new Category("Medicine", "medicine", "All kinds of meds");
 			// Category fastFood = new Category("Fast Food", "fast-food");
 			categoryRepository.save(food);
 			categoryRepository.save(beverage);

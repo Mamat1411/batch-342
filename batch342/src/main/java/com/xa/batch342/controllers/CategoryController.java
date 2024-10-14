@@ -24,6 +24,7 @@ public class CategoryController {
         ModelAndView view = new ModelAndView("category/index");
         List<Category> categories = categoryRepository.findAll();
         view.addObject("categories", categories);
+        view.addObject("title", "Master Category");
         return view;
     }
 }
