@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title th:text="${title}"></title>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <script src="js/jquery-3.7.1.min.js"></script>
+    </head>
+
+    <body>
+        <div class="container mt-3">
+            <h1>Hello World</h1>
+            <hr>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Slug</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr th:each="category, iter : ${categories}">
+                    <th scope="row" th:text="${iter.count}"></th>
+                    <td th:text="${category.name}"></td>
+                    <td th:text="${category.slug}"></td>
+                    <td>
+                        <button class="btn btn-warning">Edit</button>
+                        <button class="btn btn-danger">Delete</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+        <script src="js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>
