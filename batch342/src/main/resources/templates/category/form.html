@@ -1,14 +1,15 @@
-<form th:action="" method="post">
+<form th:action="@{~/category/save}" th:object="${category}" method="post">
     <div class="mb-3">
         <label for="categoryName" class="form-label">Category Name</label>
-        <input type="text" class="form-control" name="categoryName" id="categoryName" placeholder="Input Category Name">
+        <input type="text" class="form-control" name="name" id="categoryName" placeholder="Input Category Name">
     </div>
     <div class="mb-3">
         <label for="categorySlug" class="form-label">Slug</label>
-        <input type="text" class="form-control" name="categorySlug" id="categorySlug">
+        <input type="text" class="form-control" name="slug" id="categorySlug" placeholder="Input Category Slug">
     </div>
     <div class="mb-3">
         <label for="categoryDesc">Description</label>
-        <input type="text" class="form-control" name="categoryDesc" id="categoryDesc">
+        <textarea class="form-control" name="desc" id="categoryDesc" placeholder="Input Category Desc"></textarea>
     </div>
+    <button type="submit" class="btn btn-primary" style="float: right;">Save</button>
 </form>
