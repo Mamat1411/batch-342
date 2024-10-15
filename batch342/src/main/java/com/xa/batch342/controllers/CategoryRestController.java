@@ -22,7 +22,7 @@ public class CategoryRestController {
     CategoryRepository categoryRepository;
 
     @GetMapping("")
-    public ResponseEntity<?> getMethodName() {
+    public ResponseEntity<?> getAllCategories() {
         LinkedHashMap<String, Object> resultMap = new LinkedHashMap<>();
         List<Category> categories = categoryRepository.findAll();
         resultMap.put("status", 200);
