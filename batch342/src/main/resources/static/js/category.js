@@ -23,3 +23,27 @@ function editForm(id) {
         }
     });
 }
+
+function deleteForm(id) {
+    $.ajax({
+        type: "get",
+        url: `/category/deleteForm/${id}`,
+        contentType: `html`,
+        success: function (categoryForm) {
+            $('#myModal').modal('show');
+            $('.modal-title').html("Category Form");
+            $('.modal-body').html(categoryForm);
+        }
+    });
+}
+
+function deleteCategory(id) {
+    $.ajax({
+        type: "get",
+        url: `/category/delete/${id}`,
+        contentType: `html`,
+        success: function (response) {
+            location.reload();
+        }
+    });
+}

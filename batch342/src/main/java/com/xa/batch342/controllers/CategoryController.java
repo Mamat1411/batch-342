@@ -16,9 +16,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-
-
-
 @Controller
 @RequestMapping("/category")
 public class CategoryController {
@@ -55,6 +52,20 @@ public class CategoryController {
         Category category = categoryRepository.findById(id).orElse(null);
         view.addObject("category", category);
         return view;
+    }
+    
+    @GetMapping("/deleteForm/{id}")
+    public ModelAndView deleteForm(@PathVariable("id") Long id) {
+        ModelAndView view = new ModelAndView("category/deleteForm");
+        Category category = categoryRepository.findById(id).orElse(null);
+        view.addObject("category", category);
+        return view;
+    }
+    
+    @GetMapping("/delete/{id}")
+    public ModelAndView deleteCategory(@PathVariable("id") Long id) {
+        categoryRepository.deleteById(id);
+        return new ModelAndView("redirect:/category");
     }
     
 }
