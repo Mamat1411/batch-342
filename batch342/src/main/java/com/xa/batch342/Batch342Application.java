@@ -10,13 +10,18 @@ import org.springframework.context.annotation.Bean;
 
 // import com.github.javafaker.Faker;
 import com.xa.batch342.entities.Category;
+import com.xa.batch342.entities.Product;
 import com.xa.batch342.repositories.CategoryRepository;
+import com.xa.batch342.repositories.ProductRepository;
 
 @SpringBootApplication
 public class Batch342Application {
 
 	@Autowired
 	CategoryRepository categoryRepository;
+
+	@Autowired
+	ProductRepository productRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Batch342Application.class, args);
@@ -41,6 +46,13 @@ public class Batch342Application {
 			// 	Category categorySeed = new Category(faker.name().fullName(), faker.internet().slug());
 			// 	categoryRepository.save(categorySeed);
 			// }
+
+			Product indomie = new Product("Instant Noodle", "instant-noodle", "Delicious Instant Noodle", 1L, false);
+			Product dairy = new Product("Dairy", "dairy", "Milk Processed Drinks", 2L, false);
+			Product paracetamol = new Product("Paracetamol", "paracetamol", "Fever Meds", 3L, true);
+			productRepository.save(indomie);
+			productRepository.save(dairy);
+			productRepository.save(paracetamol);
 		};
 	}
 }
