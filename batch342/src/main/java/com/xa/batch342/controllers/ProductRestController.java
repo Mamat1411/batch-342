@@ -39,18 +39,18 @@ public class ProductRestController {
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         try {
             List<Product> products = productService.getAllProducts();
-            // List<ProductResponseDto> productResponseDtos = new ArrayList<>();
-            // for (Product product : products) {
-            //     ProductResponseDto productResponseDto = new ProductResponseDto();
-            //     productResponseDto.setName(product.getName());
-            //     productResponseDto.setSlug(product.getSlug());
-            //     productResponseDto.setDescription(product.getDescription());
-            //     productResponseDto.setCreatedAt(product.getCreatedAt());
-            //     productResponseDto.setUpdatedAt(product.getUpdatedAt());
-            //     productResponseDto.setCategory(product.getCategory());
-            //     productResponseDtos.add(productResponseDto);
-            // }
-            List<ProductResponseDto> productResponseDtos = products.stream().map(product -> modelMapper.map(product, ProductResponseDto.class)).collect(Collectors.toList());
+            List<ProductResponseDto> productResponseDtos = new ArrayList<>();
+            for (Product product : products) {
+                ProductResponseDto productResponseDto = new ProductResponseDto();
+                productResponseDto.setName(product.getName());
+                productResponseDto.setSlug(product.getSlug());
+                productResponseDto.setDescription(product.getDescription());
+                productResponseDto.setCreatedAt(product.getCreatedAt());
+                productResponseDto.setUpdatedAt(product.getUpdatedAt());
+                productResponseDto.setCategory(product.getCategory());
+                productResponseDtos.add(productResponseDto);
+            }
+            // List<ProductResponseDto> productResponseDtos = products.stream().map(product -> modelMapper.map(product, ProductResponseDto.class)).collect(Collectors.toList());
             resultMap.put("status", 200);
             resultMap.put("message", "success");
             resultMap.put("data", productResponseDtos);
@@ -68,7 +68,13 @@ public class ProductRestController {
         LinkedHashMap<String, Object> resultMap = new LinkedHashMap<>();
         ModelMapper modelMapper = new ModelMapper();
         try {
-            Product product = modelMapper.map(productRequestDto, Product.class);
+            // Product product = modelMapper.map(productRequestDto, Product.class);
+            Product product = new Product();
+            product.setName(productRequestDto.getName());
+            product.setSlug(productRequestDto.getSlug());
+            product.setDescription(productRequestDto.getDescription());
+            product.setCategoryId(productRequestDto.getCategoryId());
+            product.setIsDeleted(productRequestDto.getIsDeleted());
             productService.saveProduct(product);
             resultMap.put("status", 200);
             resultMap.put("message", "success");

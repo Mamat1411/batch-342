@@ -43,7 +43,7 @@ public class Product extends BaseEntity{
 
     @ManyToOne
     @JoinColumn(name = "category_id", insertable = false, updatable = false)
-    public Category category;
+    private Category category;
 
     @Column(name = "category_id")
     private Long categoryId;
