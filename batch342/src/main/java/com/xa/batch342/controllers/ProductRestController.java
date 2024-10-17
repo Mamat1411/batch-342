@@ -18,6 +18,7 @@ import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -94,7 +95,7 @@ public class ProductRestController {
     }
     
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateProductById(@PathVariable Long id, @RequestBody ProductRequestDto productRequestDto) {
+    public ResponseEntity<?> updateProductById(@PathVariable("id") Long id, @RequestBody ProductRequestDto productRequestDto) {
         LinkedHashMap<String, Object> resultMap = new LinkedHashMap<>();
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
@@ -110,6 +111,22 @@ public class ProductRestController {
             resultMap.put("status", 200);
             resultMap.put("message", "success");
             resultMap.put("data", product);
+            return new ResponseEntity<>(resultMap, HttpStatus.OK);
+        } catch (Exception e) {
+            resultMap.put("status", 500);
+            resultMap.put("message", "failed");
+            resultMap.put("error", e);
+            return new ResponseEntity<>(resultMap, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteProductById(@PathVariable("id") Long id){
+        LinkedHashMap<String, Object> resultMap = new LinkedHashMap<>();
+        try {
+            productService.deleteProductById(id);
+            resultMap.put("status", 200);
+            resultMap.put("message", "success");
             return new ResponseEntity<>(resultMap, HttpStatus.OK);
         } catch (Exception e) {
             resultMap.put("status", 500);
