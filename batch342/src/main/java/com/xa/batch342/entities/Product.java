@@ -19,12 +19,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Product extends BaseEntity{
 
-    public Product(String name, String slug, String description, Long categoryId, Boolean isDeleted){
+    public Product(String name, String slug, String description, Long categoryId){
         this.name = name;
         this.slug = slug;
         this.description = description;
         this.categoryId = categoryId;
-        this.isDeleted = isDeleted;
     }
     
     @Id
@@ -47,7 +46,4 @@ public class Product extends BaseEntity{
 
     @Column(name = "category_id")
     private Long categoryId;
-
-    @Column(name = "is_deleted")
-    private Boolean isDeleted;
 }

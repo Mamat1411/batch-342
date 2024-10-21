@@ -47,9 +47,9 @@ public class Batch342Application {
 			// 	categoryRepository.save(categorySeed);
 			// }
 
-			Product indomie = new Product("Instant Noodle", "instant-noodle", "Delicious Instant Noodle", 1L, false);
-			Product dairy = new Product("Dairy", "dairy", "Milk Processed Drinks", 2L, false);
-			Product paracetamol = new Product("Paracetamol", "paracetamol", "Fever Meds", 3L, true);
+			Product indomie = new Product("Instant Noodle", "instant-noodle", "Delicious Instant Noodle", 1L);
+			Product dairy = new Product("Dairy", "dairy", "Milk Processed Drinks", 2L);
+			Product paracetamol = new Product("Paracetamol", "paracetamol", "Fever Meds", 3L);
 			productRepository.save(indomie);
 			productRepository.save(dairy);
 			productRepository.save(paracetamol);
