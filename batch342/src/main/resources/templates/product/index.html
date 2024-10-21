@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="https://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/main}">
+<body>
+    <section layout:fragment="container">
+        <div class="container mt-3">
+            <h1 th:text="${title}"></h1>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary mt-1 mb-3" onclick="openForm()">
+                Add Product Data
+            </button>
+
+            <table class="table table-bordered table-striped table-hover table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">Product Category</th>
+                        <th scope="col">Slug</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="product, iter : ${products}">
+                        <th scope="row" th:text="${iter.count}"></th>
+                        <td th:text="${product.name}"></td>
+                        <td th:text="${product.category.name}"></td>
+                        <td th:text="${product.slug}"></td>
+                        <td th:text="${product.description}"></td>
+                        <td>
+                            <button class="btn btn-warning" th:value="${product.slug}" onclick="editForm(this.value)">Edit</button>
+                            <button class="btn btn-danger" th:value="${product.slug}" onclick="deleteForm(this.value)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="myModalLabel">Modal title</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="js/product.js"></script>
+    </section>
+</body>
+</html>

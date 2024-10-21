@@ -1,0 +1,22 @@
+<form th:action="@{~/product/save}" th:object="${product}" method="post">
+    <input type="hidden" name="slug" id="id" th:field="*{slug}">
+    <div class="mb-3">
+        <label for="productName" class="form-label">Product Name</label>
+        <input type="text" class="form-control" name="name" id="productName" placeholder="Input Product Name" th:field="*{name}">
+    </div>
+    <div class="mb-3">
+        <label for="categoryId" class="form-label">Product Category</label>
+        <select name="categoryId" id="categoryId" class="form-select" th:field="*{categoryId}">
+            <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="productSlug" class="form-label">Slug</label>
+        <input type="text" class="form-control" name="slug" id="productSlug" placeholder="Input Product Slug" th:field="*{slug}">
+    </div>
+    <div class="mb-3">
+        <label for="productDesc">Description</label>
+        <textarea class="form-control" name="description" id="productDesc" placeholder="Input Product Desc" th:field="*{description}"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary" style="float: right;">Save</button>
+</form>

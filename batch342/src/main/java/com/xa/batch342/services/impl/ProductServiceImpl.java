@@ -35,4 +35,15 @@ public class ProductServiceImpl implements ProductService{
         Product product = productRepository.findById(id).orElse(null);
         productRepository.deleteById(product.getId());
     }
+
+    @Override
+    public Product getProductBySlug(String slug) {
+        return productRepository.getProductBySlug(slug);
+    }
+
+    @Override
+    public void deleteProductBySlug(String slug) {
+        Product product = productRepository.getProductBySlug(slug);
+        productRepository.deleteById(product.getId());
+    }
 }

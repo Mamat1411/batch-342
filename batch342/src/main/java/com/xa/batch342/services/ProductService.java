@@ -9,4 +9,6 @@ public interface ProductService {
     Product saveProduct(Product product);
     Product getProductById(Long id);
     void deleteProductById(Long id);
+    Product getProductBySlug(String slug);
+    void deleteProductBySlug(String slug);
 }

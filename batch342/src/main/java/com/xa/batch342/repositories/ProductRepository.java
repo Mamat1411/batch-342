@@ -18,4 +18,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     // Hibernate Query
     @Query(value = "select p from Product p where isDeleted = false")
     List<Product> getAllProducts();
+
+    @Query(value = "select * from spring.products where is_deleted = false and slug = ?1", nativeQuery = true)
+    Product getProductBySlug(String Slug);
 }
