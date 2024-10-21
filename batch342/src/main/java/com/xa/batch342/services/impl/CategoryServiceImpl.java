@@ -3,11 +3,13 @@ package com.xa.batch342.services.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.xa.batch342.entities.Category;
 import com.xa.batch342.repositories.CategoryRepository;
 import com.xa.batch342.services.CategoryService;
 
+@Service
 public class CategoryServiceImpl implements CategoryService{
 
     @Autowired
