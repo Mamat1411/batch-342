@@ -47,12 +47,18 @@ public class Batch342Application {
 			// 	categoryRepository.save(categorySeed);
 			// }
 
-			Product indomie = new Product("Instant Noodle", "instant-noodle", "Delicious Instant Noodle", 1L);
-			Product dairy = new Product("Dairy", "dairy", "Milk Processed Drinks", 2L);
-			Product paracetamol = new Product("Paracetamol", "paracetamol", "Fever Meds", 3L);
+			Product burgerBangor = new Product("Burger Bangor", "burger-bangor", "Best Local Burgers", 1L);
+			Product indomie = new Product("Indomie", "indomie", "Best Indonesian Instant Noodles", 1L);
+			Product oatside = new Product("OatSide", "oatside", "Oat Flavored Plant-Based Milk", 2L);
+			Product youC1000 = new Product("You C1000", "youc1000", "Your Daily Supplement of Vitamin C", 2L);
+			Product paracetamol = new Product("Paracetamol", "paracetamol", "Fever and Cold Medicine", 3L);
+			Product antasida = new Product("Antasida", "antasida", "Gerd and Pyrosis Medicine", 3L);
+			productRepository.save(burgerBangor);
 			productRepository.save(indomie);
-			productRepository.save(dairy);
+			productRepository.save(oatside);
+			productRepository.save(youC1000);
 			productRepository.save(paracetamol);
+			productRepository.save(antasida);
 		};
 	}
 }
