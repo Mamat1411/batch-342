@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 
 
+
 @Controller
 @RequestMapping("/category")
 public class CategoryController {
@@ -20,8 +21,7 @@ public class CategoryController {
     
     @GetMapping("/form")
     public ModelAndView form() {
-        ModelAndView view = new ModelAndView();
+        ModelAndView view = new ModelAndView("category/form");
         return view;
     }
-    
 }

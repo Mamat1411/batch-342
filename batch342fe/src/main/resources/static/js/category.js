@@ -32,6 +32,8 @@ function openForm(type) {
     let button = ``;
     if (type == "edit") {
         button += `<button type="submit" class="btn btn-primary" id="editButton" style="float: right;" onclick="editCategory(this.value)">Update</button>`
+    } else if(type == "delete"){
+        button += `<button class="btn btn-danger" id="deleteButton" style="float: right;" onclick="deleteCategory(this.value)">Delete</button>`
     } else {
         button += `<button type="submit" class="btn btn-primary" style="float: right;" onclick="saveCategory()">Save</button>`
     }
@@ -41,7 +43,11 @@ function openForm(type) {
         contentType: "html",
         success: function (categoryForm) {
             $('#myModal').modal('show');
-            $('.modal-title').html("Category Form");
+            if (type == "delete") {
+                $('.modal-title').html("Are you sure wanting to delete this data?");
+            } else {
+                $('.modal-title').html("Category Form");
+            }
             $('.modal-body').html(categoryForm);
             $('#formButton').append(button);
         }
@@ -101,4 +107,37 @@ function editCategory(id) {
             location.reload();
         }
     });
+}
+
+function deleteForm(id) {
+    openForm("delete");
+    $.ajax({
+        type: "get",
+        url: `http://localhost:9001/api/category/${id}`,
+        contentType: "application/json",
+        success: function (response) {
+            let categoryData = response.data;
+            $('#categoryName').val(categoryData.name);
+            $('#categoryName').prop("disabled", true);
+            $("#categorySlug").val(categoryData.slug);
+            $('#categorySlug').prop("disabled", true);
+            $('#categoryDesc').val(categoryData.description);
+            $('#categoryDesc').prop("disabled", true);
+            $("#deleteButton").val(categoryData.id);
+        }
+    });
+}
+
+function deleteCategory(id) {
+    confirm("Are you sure?", 
+        $.ajax({
+            type: "delete",
+            url: `http://localhost:9001/api/category/${id}`,
+            contentType: "application/json",
+            success: function (response) {
+                console.log(response);
+                location.reload();
+            }
+        })
+    );
 }
