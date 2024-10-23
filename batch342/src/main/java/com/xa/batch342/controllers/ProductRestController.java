@@ -41,23 +41,8 @@ public class ProductRestController {
     @GetMapping("")
     public ResponseEntity<?> getAllProducts() {
         LinkedHashMap<String, Object> resultMap = new LinkedHashMap<>();
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         try {
-            List<Product> products = productService.getAllProducts();
-            List<ProductResponseDto> productResponseDtos = new ArrayList<>();
-            for (Product product : products) {
-                ProductResponseDto productResponseDto = new ProductResponseDto();
-                productResponseDto.setName(product.getName());
-                productResponseDto.setSlug(product.getSlug());
-                productResponseDto.setDescription(product.getDescription());
-                productResponseDto.setCreatedAt(product.getCreatedAt());
-                productResponseDto.setUpdatedAt(product.getUpdatedAt());
-                productResponseDto.setCategory(product.getCategory());
-                productResponseDto.setIsDeleted(product.getIsDeleted());
-                productResponseDtos.add(productResponseDto);
-            }
-            // List<ProductResponseDto> productResponseDtos = products.stream().map(product -> modelMapper.map(product, ProductResponseDto.class)).collect(Collectors.toList());
+            List<ProductResponseDto> productResponseDtos = productService.getAllProducts();
             resultMap.put("status", 200);
             resultMap.put("message", "success");
             resultMap.put("data", productResponseDtos);

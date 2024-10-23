@@ -2,13 +2,11 @@ package com.xa.batch342.dtos.responses;
 
 import java.time.LocalDateTime;
 
-import com.xa.batch342.entities.Category;
-
 public class ProductResponseDto {
     private String name;
     private String slug;
     private String description;
-    private Category category;
+    private CategoryResponseDto category;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private Boolean isDeleted;
@@ -49,10 +47,11 @@ public class ProductResponseDto {
     public void setIsDeleted(Boolean isDeleted) {
         this.isDeleted = isDeleted;
     }
-    public Category getCategory() {
+    public CategoryResponseDto getCategory() {
         return category;
     }
-    public void setCategory(Category category) {
+    public void setCategory(CategoryResponseDto category) {
         this.category = category;
     }
+    
 }

@@ -1,10 +1,14 @@
 package com.xa.batch342.services.impl;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.xa.batch342.dtos.responses.CategoryResponseDto;
 import com.xa.batch342.entities.Category;
 import com.xa.batch342.repositories.CategoryRepository;
 import com.xa.batch342.services.CategoryService;
@@ -14,10 +18,15 @@ public class CategoryServiceImpl implements CategoryService{
 
     @Autowired
     CategoryRepository categoryRepository;
+    
+    ModelMapper modelMapper = new ModelMapper();
 
     @Override
-    public List<Category> getAllCategories() {
-        return categoryRepository.findAll();   
+    public List<CategoryResponseDto> getAllCategories() {
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+        List<Category> categories = categoryRepository.findAll();
+        List<CategoryResponseDto> categoryResponseDtos = categories.stream().map(category -> modelMapper.map(category, CategoryResponseDto.class)).collect(Collectors.toList());
+        return categoryResponseDtos;   
     }
 
     @Override

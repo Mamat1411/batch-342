@@ -2,7 +2,6 @@ package com.xa.batch342.controllers;
 
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
@@ -26,10 +25,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
 
-
-
-
-
 @RestController
 @RequestMapping("/api/category")
 public class CategoryRestController {
@@ -40,11 +35,8 @@ public class CategoryRestController {
     @GetMapping("")
     public ResponseEntity<?> getAllCategories() {
         LinkedHashMap<String, Object> resultMap = new LinkedHashMap<>();
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         try {
-            List<Category> categories = categoryService.getAllCategories();
-            List<CategoryResponseDto> categoryResponseDtos = categories.stream().map(category -> modelMapper.map(category, CategoryResponseDto.class)).collect(Collectors.toList());
+            List<CategoryResponseDto> categoryResponseDtos = categoryService.getAllCategories();
             resultMap.put("status", 200);
             resultMap.put("message", "success");
             resultMap.put("data", categoryResponseDtos);

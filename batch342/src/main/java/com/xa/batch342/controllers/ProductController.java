@@ -1,17 +1,14 @@
 package com.xa.batch342.controllers;
 
 import java.util.List;
-import java.util.stream.Collectors;
-
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.xa.batch342.dtos.responses.CategoryResponseDto;
 import com.xa.batch342.dtos.responses.ProductResponseDto;
-import com.xa.batch342.entities.Category;
 import com.xa.batch342.entities.Product;
 import com.xa.batch342.services.CategoryService;
 import com.xa.batch342.services.ProductService;
@@ -36,10 +33,8 @@ public class ProductController {
 
     @GetMapping("")
     public ModelAndView getProduct() {
-        ModelMapper modelMapper = new ModelMapper();
         ModelAndView view = new ModelAndView("product/index");
-        List<Product> products = productService.getAllProducts();
-        List<ProductResponseDto> productResponseDtos = products.stream().map(product -> modelMapper.map(product, ProductResponseDto.class)).collect(Collectors.toList());
+        List<ProductResponseDto> productResponseDtos = productService.getAllProducts();
         view.addObject("title", "Master Product");
         view.addObject("products", productResponseDtos);
         return view;
@@ -49,7 +44,7 @@ public class ProductController {
     public ModelAndView form() {
         ModelAndView view = new ModelAndView("product/form");
         Product product = new Product();
-        List<Category> categories = categoryService.getAllCategories();
+        List<CategoryResponseDto> categories = categoryService.getAllCategories();
         view.addObject("categories", categories);
         view.addObject("product", product);
         return view;
@@ -67,7 +62,7 @@ public class ProductController {
     public ModelAndView edit(@PathVariable String slug) {
         ModelAndView view = new ModelAndView("product/form");
         Product product = productService.getProductBySlug(slug);
-        List<Category> categories = categoryService.getAllCategories();
+        List<CategoryResponseDto> categories = categoryService.getAllCategories();
         view.addObject("categories", categories);
         view.addObject("product", product);
         return view;
