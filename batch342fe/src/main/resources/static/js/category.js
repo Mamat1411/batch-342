@@ -31,7 +31,7 @@ function loadData() {
 function openForm(type) {
     let button = ``;
     if (type == "edit") {
-        button += `<button type="submit" class="btn btn-primary" style="float: right;" onclick="editCategory(this.value)">Update</button>`
+        button += `<button type="submit" class="btn btn-primary" id="editButton" style="float: right;" onclick="editCategory(this.value)">Update</button>`
     } else {
         button += `<button type="submit" class="btn btn-primary" style="float: right;" onclick="saveCategory()">Save</button>`
     }
@@ -80,6 +80,7 @@ function editForm(id) {
             $('#categoryName').val(categoryData.name);
             $("#categorySlug").val(categoryData.slug);
             $('#categoryDesc').val(categoryData.description);
+            $("#editButton").val(categoryData.id);
         }
     });
 }
@@ -93,9 +94,6 @@ function editCategory(id) {
     $.ajax({
         url: `http://localhost:9001/api/category/${id}`,
         type: "PUT",
-        header: {
-            "Access-Control-Allow-Origin" : `*`,
-        },
         data: JSON.stringify(jsonData),
         contentType: "application/json",
         success: function (response) {
