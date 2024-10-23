@@ -11,6 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.xa.batch342.entities.Category;
 import com.xa.batch342.repositories.CategoryRepository;
 
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,7 +41,7 @@ public class CategoryController {
     }
     
     @PostMapping("/save")
-    public ModelAndView save(@ModelAttribute Category category, BindingResult result) {
+    public ModelAndView save(@Valid @ModelAttribute Category category, BindingResult result) {
         if (!result.hasErrors()) {
             categoryRepository.save(category);
         }
@@ -47,7 +49,7 @@ public class CategoryController {
     }
     
     @GetMapping("/edit/{id}")
-    public ModelAndView edit(@PathVariable Long id) {
+    public ModelAndView edit(@Valid @PathVariable Long id) {
         ModelAndView view = new ModelAndView("category/form");
         Category category = categoryRepository.findById(id).orElse(null);
         view.addObject("category", category);

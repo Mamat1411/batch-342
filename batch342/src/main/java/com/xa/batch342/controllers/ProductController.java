@@ -15,6 +15,9 @@ import com.xa.batch342.entities.Category;
 import com.xa.batch342.entities.Product;
 import com.xa.batch342.services.CategoryService;
 import com.xa.batch342.services.ProductService;
+
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -53,7 +56,7 @@ public class ProductController {
     }
     
     @PostMapping("/save")
-    public ModelAndView save(@ModelAttribute Product product, BindingResult result) {
+    public ModelAndView save(@Valid @ModelAttribute Product product, BindingResult result) {
         if (!result.hasErrors()) {
             productService.saveProduct(product);
         }

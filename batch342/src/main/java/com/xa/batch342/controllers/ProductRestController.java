@@ -8,6 +8,8 @@ import com.xa.batch342.dtos.responses.ProductResponseDto;
 import com.xa.batch342.entities.Product;
 import com.xa.batch342.services.ProductService;
 
+import jakarta.validation.Valid;
+
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -69,7 +71,7 @@ public class ProductRestController {
     }
     
     @PostMapping("")
-    public ResponseEntity<?> saveCategory(@RequestBody ProductRequestDto productRequestDto) {
+    public ResponseEntity<?> saveCategory(@Valid @RequestBody ProductRequestDto productRequestDto) {
         LinkedHashMap<String, Object> resultMap = new LinkedHashMap<>();
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
@@ -95,7 +97,7 @@ public class ProductRestController {
     }
     
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateProductById(@PathVariable("id") Long id, @RequestBody ProductRequestDto productRequestDto) {
+    public ResponseEntity<?> updateProductById(@PathVariable("id") Long id, @Valid @RequestBody ProductRequestDto productRequestDto) {
         LinkedHashMap<String, Object> resultMap = new LinkedHashMap<>();
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);

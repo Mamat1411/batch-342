@@ -17,6 +17,8 @@ import com.xa.batch342.dtos.responses.CategoryResponseDto;
 import com.xa.batch342.entities.Category;
 import com.xa.batch342.services.CategoryService;
 
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -56,7 +58,7 @@ public class CategoryRestController {
     }
     
     @GetMapping("/{id}")
-    public ResponseEntity<?> getMethodName(@PathVariable Long id) {
+    public ResponseEntity<?> getCategoryById(@PathVariable Long id) {
         LinkedHashMap<String, Object> resultMap = new LinkedHashMap<>();
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
@@ -76,7 +78,7 @@ public class CategoryRestController {
     }
     
     @PostMapping("")
-    public ResponseEntity<?> saveCategory(@RequestBody CategoryRequestDto categoryRequestDto) {
+    public ResponseEntity<?> saveCategory(@Valid @RequestBody CategoryRequestDto categoryRequestDto) {
         LinkedHashMap<String, Object> resultMap = new LinkedHashMap<>();
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
@@ -96,7 +98,7 @@ public class CategoryRestController {
     }
     
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateCategory(@PathVariable Long id, @RequestBody CategoryRequestDto categoryRequestDto) {
+    public ResponseEntity<?> updateCategory(@PathVariable Long id, @Valid @RequestBody CategoryRequestDto categoryRequestDto) {
         LinkedHashMap<String, Object> resultMap = new LinkedHashMap<>();
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);

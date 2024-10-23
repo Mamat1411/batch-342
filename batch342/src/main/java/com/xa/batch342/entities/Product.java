@@ -56,9 +56,7 @@ public class Product extends BaseEntity{
     @JoinColumn(name = "category_id", insertable = false, updatable = false)
     private Category category;
 
-    @NotBlank
     @NotNull
-    @NotEmpty
     @Column(name = "category_id")
     private Long categoryId;
 }

@@ -35,15 +35,14 @@ public class Batch342Application {
 	@Bean
 	CommandLineRunner commandLineRunner(){
 		return args -> {
+			
 			// Category Seeding
 			Category food = new Category("Food", "food", "All kinds of food");
 			Category beverage = new Category("Beverage", "beverage", "All kinds of drinks");
 			Category medicine = new Category("Medicine", "medicine", "All kinds of meds");
-			// Category fastFood = new Category("Fast Food", "fast-food");
 			categoryRepository.save(food);
 			categoryRepository.save(beverage);
 			categoryRepository.save(medicine);
-			// categoryRepository.save(fastFood);
 
 			// Faker faker = new Faker(new Locale("es"));
 			// int categories = 5;

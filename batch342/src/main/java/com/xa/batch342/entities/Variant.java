@@ -58,21 +58,15 @@ public class Variant extends BaseEntity{
     @JoinColumn(name = "productId", insertable = false, updatable = false)
     private Product product;
 
-    @NotBlank
     @NotNull
-    @NotEmpty
     @Column(name = "productId")
     private Long productId;
 
-    @NotBlank
     @NotNull
-    @NotEmpty
     @Column(name = "stock")
     private Integer stock;
 
-    @NotBlank
     @NotNull
-    @NotEmpty
     @Column(name = "price")
     private Long price;
 }
