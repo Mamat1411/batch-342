@@ -52,8 +52,6 @@ public class ProductController {
     
     @PostMapping("/save")
     public ModelAndView save(@Valid @ModelAttribute ProductRequestDto product, BindingResult result) {
-        System.out.println(product);
-        System.out.println(result);
         if (!result.hasErrors()) {
             productService.saveProduct(product);
         }
