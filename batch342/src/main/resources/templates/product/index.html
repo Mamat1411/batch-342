@@ -29,8 +29,8 @@
                         <td th:text="${product.slug}"></td>
                         <td th:text="${product.description}"></td>
                         <td>
-                            <button class="btn btn-warning" th:value="${product.slug}" onclick="editForm(this.value)">Edit</button>
-                            <button class="btn btn-danger" th:value="${product.slug}" onclick="deleteForm(this.value)">Delete</button>
+                            <button class="btn btn-warning" th:value="${product.slug}" onclick="editForm(this.value)"><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button class="btn btn-danger" th:value="${product.slug}" onclick="deleteForm(this.value)"><i class="fa-solid fa-trash"></i></button>
                         </td>
                     </tr>
                 </tbody>
