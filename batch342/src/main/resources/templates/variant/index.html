@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="https://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/main}">
+<body>
+    <section layout:fragment="container">
+        <div class="container mt-3">
+            <h1 th:text="${title}"></h1>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary mt-1 mb-3" onclick="openForm()">
+                Add Product Data
+            </button>
+
+            <table class="table table-bordered table-striped table-hover table-sm">
+                <thead>
+                    <tr style="text-align: center;">
+                        <th scope="col">#</th>
+                        <th scope="col" style="width: 20%;">Variant Name</th>
+                        <th scope="col" style="width: 10%;">Variant Product</th>
+                        <th scope="col" style="width: 10%;">Product Category</th>
+                        <th scope="col" style="width: 15%;">Slug</th>
+                        <th scope="col" style="width: 30%;">Description</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="variant, iter : ${variants}">
+                        <th scope="row" th:text="${iter.count}"></th>
+                        <td th:text="${variant.name}"></td>
+                        <td th:text="${variant.product.name}"></td>
+                        <td th:text="${variant.product.category.name}"></td>
+                        <td th:text="${variant.slug}"></td>
+                        <td th:text="${variant.description}"></td>
+                        <td style="text-align: center;">
+                            <button class="btn btn-warning" th:value="${variant.slug}" onclick="editForm(this.value)"><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button class="btn btn-danger" th:value="${variant.slug}" onclick="deleteForm(this.value)"><i class="fa-solid fa-trash"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="myModalLabel">Modal title</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="js/product.js"></script>
+    </section>
+</body>
+</html>
