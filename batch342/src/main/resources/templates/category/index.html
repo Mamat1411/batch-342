@@ -27,8 +27,8 @@
                         <td th:text="${category.slug}"></td>
                         <td th:text="${category.description}"></td>
                         <td>
-                            <button class="btn btn-warning" th:value="${category.id}" onclick="editForm(this.value)">Edit</button>
-                            <button class="btn btn-danger" th:value="${category.id}" onclick="deleteForm(this.value)">Delete</button>
+                            <button class="btn btn-warning" th:value="${category.slug}" onclick="editForm(this.value)">Edit</button>
+                            <button class="btn btn-danger" th:value="${category.slug}" onclick="deleteForm(this.value)">Delete</button>
                         </td>
                     </tr>
                 </tbody>

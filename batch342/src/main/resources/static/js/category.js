@@ -11,10 +11,10 @@ function openForm() {
     });
 }
 
-function editForm(id) {
+function editForm(slug) {
     $.ajax({
         type: "get",
-        url: `/category/edit/${id}`,
+        url: `/category/edit/${slug}`,
         contentType: `html`,
         success: function (categoryForm) {
             $('#myModal').modal('show');
@@ -24,10 +24,10 @@ function editForm(id) {
     });
 }
 
-function deleteForm(id) {
+function deleteForm(slug) {
     $.ajax({
         type: "get",
-        url: `/category/deleteForm/${id}`,
+        url: `/category/deleteForm/${slug}`,
         contentType: `html`,
         success: function (categoryForm) {
             $('#myModal').modal('show');
@@ -37,10 +37,10 @@ function deleteForm(id) {
     });
 }
 
-function deleteCategory(id) {
+function deleteCategory(slug) {
     $.ajax({
         type: "get",
-        url: `/category/delete/${id}`,
+        url: `/category/delete/${slug}`,
         contentType: `html`,
         success: function (response) {
             location.reload();

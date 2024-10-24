@@ -23,8 +23,5 @@ public class CategoryRequestDto {
     @NotEmpty
     private String description;
 
-    @NotBlank
-    @NotNull
-    @NotEmpty
     private Boolean isDeleted;
 }

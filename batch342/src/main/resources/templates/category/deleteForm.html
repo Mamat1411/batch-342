@@ -3,4 +3,4 @@ Category Name: <span th:text="${category.name}"></span><br>
 Slug: <span th:text="${category.slug}"></span><br>
 Description: <span th:text="${category.description}"></span><br>
 <hr>
-<button class="btn btn-danger" th:value="${category.id}" onclick="confirm('Are you sure?', deleteCategory(this.value))" style="float: right;">Delete</button>
+<button class="btn btn-danger" th:value="${category.slug}" onclick="confirm('Are you sure?', deleteCategory(this.value))" style="float: right;">Delete</button>

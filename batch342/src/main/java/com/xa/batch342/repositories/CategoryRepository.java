@@ -13,4 +13,7 @@ public interface CategoryRepository extends JpaRepository<Category, Long>{
     
     @Query(value = "select c from Category c where isDeleted = false")
     List<Category> getAllCategories();
+
+    @Query(value = "select c from Category c where isDeleted = false and slug = :slug")
+    Category getCategoryBySlug(String slug);
 }

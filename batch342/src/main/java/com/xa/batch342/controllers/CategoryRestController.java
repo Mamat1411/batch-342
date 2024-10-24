@@ -20,6 +20,7 @@ import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -49,14 +50,13 @@ public class CategoryRestController {
         }
     }
     
-    @GetMapping("/{id}")
-    public ResponseEntity<?> getCategoryById(@PathVariable Long id) {
+    @GetMapping("/{slug}")
+    public ResponseEntity<?> getCategoryBySlug(@PathVariable String slug) {
         LinkedHashMap<String, Object> resultMap = new LinkedHashMap<>();
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         try {
-            Category category = categoryService.getCategoryById(id);
-            CategoryResponseDto categoryResponseDto = modelMapper.map(category, CategoryResponseDto.class);
+            CategoryResponseDto categoryResponseDto = categoryService.getCategoryBySlug(slug);
             resultMap.put("status", 200);
             resultMap.put("message", "success");
             resultMap.put("data", categoryResponseDto);
@@ -75,8 +75,7 @@ public class CategoryRestController {
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         try {
-            Category category = modelMapper.map(categoryRequestDto, Category.class);
-            categoryService.saveCategory(category);
+            Category category = categoryService.saveCategory(categoryRequestDto);
             resultMap.put("status", 200);
             resultMap.put("message", "success");
             resultMap.put("data", category);
@@ -89,15 +88,15 @@ public class CategoryRestController {
         }
     }
     
-    @PutMapping("/{id}")
-    public ResponseEntity<?> updateCategory(@PathVariable Long id, @Valid @RequestBody CategoryRequestDto categoryRequestDto) {
+    @PutMapping("/{slug}")
+    public ResponseEntity<?> updateCategory(@PathVariable String slug, @Valid @RequestBody CategoryRequestDto categoryRequestDto) {
         LinkedHashMap<String, Object> resultMap = new LinkedHashMap<>();
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         try {
-            Category category = categoryService.getCategoryById(id);
-            modelMapper.map(category, CategoryResponseDto.class);
-            categoryService.saveCategory(category);
+            CategoryResponseDto categoryResponseDto = categoryService.getCategoryBySlug(slug);
+            CategoryRequestDto category = modelMapper.map(categoryResponseDto, CategoryRequestDto.class);
+            categoryService.saveCategory(categoryRequestDto);
             resultMap.put("status", 200);
             resultMap.put("message", "success");
             resultMap.put("data", category);
@@ -110,11 +109,33 @@ public class CategoryRestController {
         }
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteProductById(@PathVariable("id") Long id){
+    @PatchMapping("/{slug}")
+    public ResponseEntity<?> updateCategoryByField(@PathVariable String slug, @Valid @RequestBody CategoryRequestDto categoryRequestDto) {
+        LinkedHashMap<String, Object> resultMap = new LinkedHashMap<>();
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+        modelMapper.getConfiguration().setSkipNullEnabled(true);
+        try {
+            CategoryResponseDto categoryResponseDto = categoryService.getCategoryBySlug(slug);
+            CategoryRequestDto category = modelMapper.map(categoryResponseDto, CategoryRequestDto.class);
+            categoryService.saveCategory(categoryRequestDto);
+            resultMap.put("status", 200);
+            resultMap.put("message", "success");
+            resultMap.put("data", category);
+            return new ResponseEntity<>(resultMap, HttpStatus.OK);
+        } catch (Exception e) {
+            resultMap.put("status", 500);
+            resultMap.put("message", "success");
+            resultMap.put("error", e);
+            return new ResponseEntity<>(resultMap, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @DeleteMapping("/{slug}")
+    public ResponseEntity<?> deleteProductBySlug(@PathVariable String slug){
         LinkedHashMap<String, Object> resultMap = new LinkedHashMap<>();
         try {
-            categoryService.deleteCategory(id);
+            categoryService.deleteCategory(slug);
             resultMap.put("status", 200);
             resultMap.put("message", "success");
             return new ResponseEntity<>(resultMap, HttpStatus.OK);

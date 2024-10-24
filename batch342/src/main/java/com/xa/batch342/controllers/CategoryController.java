@@ -2,14 +2,16 @@ package com.xa.batch342.controllers;
 
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.xa.batch342.entities.Category;
-import com.xa.batch342.repositories.CategoryRepository;
+import com.xa.batch342.dtos.requests.CategoryRequestDto;
+import com.xa.batch342.dtos.responses.CategoryResponseDto;
+import com.xa.batch342.services.CategoryService;
 
 import jakarta.validation.Valid;
 
@@ -23,12 +25,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class CategoryController {
 
     @Autowired
-    CategoryRepository categoryRepository;
+    CategoryService categoryService;
+
+    ModelMapper modelMapper = new ModelMapper();
     
     @GetMapping("")
     public ModelAndView getCategory() {
         ModelAndView view = new ModelAndView("category/index");
-        List<Category> categories = categoryRepository.findAll();
+        List<CategoryResponseDto> categories = categoryService.getAllCategories();
         view.addObject("categories", categories);
         view.addObject("title", "Master Category");
         return view;
@@ -37,36 +41,38 @@ public class CategoryController {
     @GetMapping("/form")
     public ModelAndView form() {
         ModelAndView view = new ModelAndView("category/form");
+        CategoryRequestDto category = new CategoryRequestDto();
+        view.addObject("category", category);
         return view;
     }
     
     @PostMapping("/save")
-    public ModelAndView save(@Valid @ModelAttribute Category category, BindingResult result) {
+    public ModelAndView save(@Valid @ModelAttribute CategoryRequestDto category, BindingResult result) {
         if (!result.hasErrors()) {
-            categoryRepository.save(category);
+            categoryService.saveCategory(category);
         }
         return new ModelAndView("redirect:/category");
     }
     
-    @GetMapping("/edit/{id}")
-    public ModelAndView edit(@Valid @PathVariable Long id) {
+    @GetMapping("/edit/{slug}")
+    public ModelAndView edit(@Valid @PathVariable String slug) {
         ModelAndView view = new ModelAndView("category/form");
-        Category category = categoryRepository.findById(id).orElse(null);
-        view.addObject("category", category);
+        CategoryResponseDto categoryResponseDto = categoryService.getCategoryBySlug(slug);
+        view.addObject("category", categoryResponseDto);
         return view;
     }
     
-    @GetMapping("/deleteForm/{id}")
-    public ModelAndView deleteForm(@PathVariable("id") Long id) {
+    @GetMapping("/deleteForm/{slug}")
+    public ModelAndView deleteForm(@PathVariable String slug) {
         ModelAndView view = new ModelAndView("category/deleteForm");
-        Category category = categoryRepository.findById(id).orElse(null);
-        view.addObject("category", category);
+        CategoryResponseDto categoryResponseDto = categoryService.getCategoryBySlug(slug);
+        view.addObject("category", categoryResponseDto);
         return view;
     }
     
-    @GetMapping("/delete/{id}")
-    public ModelAndView deleteCategory(@PathVariable("id") Long id) {
-        categoryRepository.deleteById(id);
+    @GetMapping("/delete/{slug}")
+    public ModelAndView deleteCategory(@PathVariable String slug) {
+        categoryService.deleteCategory(slug);
         return new ModelAndView("redirect:/category");
     }
     

@@ -8,6 +8,7 @@ import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.xa.batch342.dtos.requests.CategoryRequestDto;
 import com.xa.batch342.dtos.responses.CategoryResponseDto;
 import com.xa.batch342.entities.Category;
 import com.xa.batch342.repositories.CategoryRepository;
@@ -20,7 +21,7 @@ public class CategoryServiceImpl implements CategoryService{
     CategoryRepository categoryRepository;
     
     ModelMapper modelMapper = new ModelMapper();
-
+    
     @Override
     public List<CategoryResponseDto> getAllCategories() {
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
@@ -30,18 +31,24 @@ public class CategoryServiceImpl implements CategoryService{
     }
 
     @Override
-    public Category getCategoryById(Long id) {
-        return categoryRepository.findById(id).orElse(null);
+    public CategoryResponseDto getCategoryBySlug(String slug) {
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+        Category category = categoryRepository.getCategoryBySlug(slug);
+        CategoryResponseDto categoryResponseDto = modelMapper.map(category, CategoryResponseDto.class);
+        return categoryResponseDto;
     }
 
     @Override
-    public Category saveCategory(Category category) {
+    public Category saveCategory(CategoryRequestDto categoryRequestDto) {
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+        modelMapper.getConfiguration().setSkipNullEnabled(true);
+        Category category = modelMapper.map(categoryRequestDto, Category.class);
         return categoryRepository.save(category);
     }
 
     @Override
-    public void deleteCategory(Long id) {
-        Category category = categoryRepository.findById(id).orElse(null);
+    public void deleteCategory(String slug) {
+        Category category = categoryRepository.getCategoryBySlug(slug);
         categoryRepository.deleteById(category.getId());
     }
     
