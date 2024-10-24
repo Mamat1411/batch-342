@@ -43,7 +43,7 @@ public class Product extends BaseEntity{
     @NotBlank
     @NotNull
     @NotEmpty
-    @Column(name = "slug", length = 20, unique = true)
+    @Column(name = "slug", length = 50, unique = true)
     private String slug;
 
     @NotBlank

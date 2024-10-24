@@ -1,4 +1,5 @@
 <form th:action="@{~/category/save}" th:object="${category}" method="post">
+    <input type="hidden" name="id" id="id" th:field="*{id}">
     <div class="mb-3">
         <label for="categoryName" class="form-label">Category Name</label>
         <input type="text" class="form-control" name="name" id="categoryName" placeholder="Input Category Name" th:field="*{name}">

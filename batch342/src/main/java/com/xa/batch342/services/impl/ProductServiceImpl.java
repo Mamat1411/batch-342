@@ -8,6 +8,7 @@ import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.xa.batch342.dtos.requests.ProductRequestDto;
 import com.xa.batch342.dtos.responses.ProductResponseDto;
 import com.xa.batch342.entities.Product;
 import com.xa.batch342.repositories.ProductRepository;
@@ -30,24 +31,18 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public Product saveProduct(Product product) {
+    public Product saveProduct(ProductRequestDto productRequestDto) {
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+        modelMapper.getConfiguration().setSkipNullEnabled(true);
+        Product product = modelMapper.map(productRequestDto, Product.class);
         return productRepository.save(product);
     }
-    
-    @Override
-    public Product getProductById(Long id){
-        return productRepository.findById(id).orElse(null);
-    }
 
     @Override
-    public void deleteProductById(Long id) {
-        Product product = productRepository.findById(id).orElse(null);
-        productRepository.deleteById(product.getId());
-    }
-
-    @Override
-    public Product getProductBySlug(String slug) {
-        return productRepository.getProductBySlug(slug);
+    public ProductResponseDto getProductBySlug(String slug) {
+        Product product = productRepository.getProductBySlug(slug);
+        ProductResponseDto productResponseDto = modelMapper.map(product, ProductResponseDto.class);
+        return productResponseDto;
     }
 
     @Override

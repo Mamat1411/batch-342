@@ -41,7 +41,7 @@ public class CategoryController {
     @GetMapping("/form")
     public ModelAndView form() {
         ModelAndView view = new ModelAndView("category/form");
-        CategoryRequestDto category = new CategoryRequestDto();
+        CategoryResponseDto category = new CategoryResponseDto();
         view.addObject("category", category);
         return view;
     }

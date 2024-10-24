@@ -61,14 +61,7 @@ public class ProductRestController {
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         try {
-            // Product product = modelMapper.map(productRequestDto, Product.class);
-            Product product = new Product();
-            product.setName(productRequestDto.getName());
-            product.setSlug(productRequestDto.getSlug());
-            product.setDescription(productRequestDto.getDescription());
-            product.setCategoryId(productRequestDto.getCategoryId());
-            product.setIsDeleted(productRequestDto.getIsDeleted());
-            productService.saveProduct(product);
+            Product product = productService.saveProduct(productRequestDto);
             resultMap.put("status", 200);
             resultMap.put("message", "success");
             resultMap.put("data", product);
@@ -81,19 +74,14 @@ public class ProductRestController {
         }
     }
     
-    @PutMapping("/{id}")
-    public ResponseEntity<?> updateProductById(@PathVariable("id") Long id, @Valid @RequestBody ProductRequestDto productRequestDto) {
+    @PutMapping("/{slug}")
+    public ResponseEntity<?> updateProductBySlug(@PathVariable String slug, @Valid @RequestBody ProductRequestDto productRequestDto) {
         LinkedHashMap<String, Object> resultMap = new LinkedHashMap<>();
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         try {
-            Product product = productService.getProductById(id);
-            // modelMapper.map(productRequestDto, product);
-            product.setName(productRequestDto.getName());
-            product.setSlug(productRequestDto.getSlug());
-            product.setDescription(productRequestDto.getDescription());
-            product.setCategoryId(productRequestDto.getCategoryId());
-            product.setIsDeleted(productRequestDto.getIsDeleted());
+            ProductResponseDto productResponseDto = productService.getProductBySlug(slug);
+            ProductRequestDto product = modelMapper.map(productResponseDto, ProductRequestDto.class);
             productService.saveProduct(product);
             resultMap.put("status", 200);
             resultMap.put("message", "success");
@@ -107,11 +95,11 @@ public class ProductRestController {
         }
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteProductById(@PathVariable("id") Long id){
+    @DeleteMapping("/{slug}")
+    public ResponseEntity<?> deleteProductBySlug(@PathVariable String slug){
         LinkedHashMap<String, Object> resultMap = new LinkedHashMap<>();
         try {
-            productService.deleteProductById(id);
+            productService.deleteProductBySlug(slug);
             resultMap.put("status", 200);
             resultMap.put("message", "success");
             return new ResponseEntity<>(resultMap, HttpStatus.OK);

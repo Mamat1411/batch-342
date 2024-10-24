@@ -23,13 +23,8 @@ public class ProductRequestDto {
     @NotEmpty
     private String description;
 
-    @NotBlank
     @NotNull
-    @NotEmpty
     private Long categoryId;
 
-    @NotBlank
-    @NotNull
-    @NotEmpty
     private Boolean isDeleted;
 }

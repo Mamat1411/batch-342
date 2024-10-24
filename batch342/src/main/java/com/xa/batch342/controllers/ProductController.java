@@ -7,9 +7,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.xa.batch342.dtos.requests.ProductRequestDto;
 import com.xa.batch342.dtos.responses.CategoryResponseDto;
 import com.xa.batch342.dtos.responses.ProductResponseDto;
-import com.xa.batch342.entities.Product;
 import com.xa.batch342.services.CategoryService;
 import com.xa.batch342.services.ProductService;
 
@@ -43,7 +43,7 @@ public class ProductController {
     @GetMapping("/form")
     public ModelAndView form() {
         ModelAndView view = new ModelAndView("product/form");
-        Product product = new Product();
+        ProductResponseDto product = new ProductResponseDto();
         List<CategoryResponseDto> categories = categoryService.getAllCategories();
         view.addObject("categories", categories);
         view.addObject("product", product);
@@ -51,7 +51,9 @@ public class ProductController {
     }
     
     @PostMapping("/save")
-    public ModelAndView save(@Valid @ModelAttribute Product product, BindingResult result) {
+    public ModelAndView save(@Valid @ModelAttribute ProductRequestDto product, BindingResult result) {
+        System.out.println(product);
+        System.out.println(result);
         if (!result.hasErrors()) {
             productService.saveProduct(product);
         }
@@ -61,7 +63,7 @@ public class ProductController {
     @GetMapping("/edit/{slug}")
     public ModelAndView edit(@PathVariable String slug) {
         ModelAndView view = new ModelAndView("product/form");
-        Product product = productService.getProductBySlug(slug);
+        ProductResponseDto product = productService.getProductBySlug(slug);
         List<CategoryResponseDto> categories = categoryService.getAllCategories();
         view.addObject("categories", categories);
         view.addObject("product", product);
@@ -71,7 +73,7 @@ public class ProductController {
     @GetMapping("/deleteForm/{slug}")
     public ModelAndView deleteForm(@PathVariable String slug) {
         ModelAndView view = new ModelAndView("product/deleteForm");
-        Product product = productService.getProductBySlug(slug);
+        ProductResponseDto product = productService.getProductBySlug(slug);
         view.addObject("product", product);
         return view;
     }

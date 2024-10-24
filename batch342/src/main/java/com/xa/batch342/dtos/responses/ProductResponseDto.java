@@ -3,10 +3,12 @@ package com.xa.batch342.dtos.responses;
 import java.time.LocalDateTime;
 
 public class ProductResponseDto {
+    private Long id;
     private String name;
     private String slug;
     private String description;
     private CategoryResponseDto category;
+    private Long categoryId;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private Boolean isDeleted;
@@ -52,6 +54,18 @@ public class ProductResponseDto {
     }
     public void setCategory(CategoryResponseDto category) {
         this.category = category;
+    }
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
+    public Long getCategoryId() {
+        return categoryId;
+    }
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
     
 }
