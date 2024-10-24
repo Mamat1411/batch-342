@@ -8,6 +8,8 @@ import lombok.Data;
 @Data
 public class ProductRequestDto {
 
+    private Long id;
+
     @NotBlank
     @NotNull
     @NotEmpty
