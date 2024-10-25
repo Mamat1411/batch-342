@@ -1,0 +1,10 @@
+<p>Are you sure to delete this data?</p>
+Variant Name: <span th:text="${variant.name}"></span><br>
+Variant Category: <span th:text="${variant.product.category.name}"></span><br>
+Variant Product: <span th:text="${variant.product.name}"></span><br>
+Slug: <span th:text="${variant.slug}"></span><br>
+Description: <span th:text="${variant.description}"></span><br>
+Stock: <span th:text="${variant.stock}"></span><br>
+Price: <span th:text="${variant.price}"></span><br>
+<hr>
+<button class="btn btn-danger" th:value="${variant.slug}" onclick="confirm('Are you sure?', deleteVariant(this.value))" style="float: right;">Delete</button>

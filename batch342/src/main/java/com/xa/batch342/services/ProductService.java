@@ -11,4 +11,5 @@ public interface ProductService {
     Product saveProduct(ProductRequestDto productRequestDto);
     ProductResponseDto getProductBySlug(String slug);
     void deleteProductBySlug(String slug);
+    List<ProductResponseDto> getProductsByCategoryId(Long id);
 }

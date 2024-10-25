@@ -7,6 +7,6 @@ import com.xa.batch342.entities.Variant;
 
 public interface VariantRepository extends JpaRepository<Variant, Long>{
     
-    @Query(value = "select * from spring.variant where slug = ?1", nativeQuery = true)
+    @Query(value = "select * from spring.variants where slug = ?1", nativeQuery = true)
     Variant getVariantBySlug(String slug);
 }

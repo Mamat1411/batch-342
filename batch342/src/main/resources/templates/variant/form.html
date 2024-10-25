@@ -1,0 +1,38 @@
+<form th:action="@{~/variant/save}" th:object="${variant}" method="post">
+    <input type="hidden" name="id" id="id" th:field="*{id}">
+    <div class="mb-3">
+        <label for="variantName" class="form-label">Variant Name</label>
+        <input type="text" class="form-control" name="name" id="variantName" placeholder="Input Variant Name" th:field="*{name}">
+    </div>
+    <div class="mb-3">
+        <label for="categoryId" class="form-label">Variant Category</label>
+        <select id="categoryId" class="form-select" onchange="getProductListByCategoryId(this.value)">
+            <option value="">Please Select Variant Category</option>
+            <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}" th:selected="${variant.product.categoryId == category.id}"></option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="productId" class="form-label">Variant Product</label>
+        <select name="productId" id="productId" class="form-select" th:field="*{productId}">
+            <option value="">Please Select Variant Product</option>
+            <option th:each="product : ${products}" th:value="${product.id}" th:text="${product.name}"></option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="variantSlug" class="form-label">Slug</label>
+        <input type="text" class="form-control" name="slug" id="variantSlug" placeholder="Input Variant Slug" th:field="*{slug}">
+    </div>
+    <div class="mb-3">
+        <label for="variantDesc">Description</label>
+        <textarea class="form-control" name="description" id="variantDesc" placeholder="Input Variant Desc" th:field="*{description}"></textarea>
+    </div>
+    <div class="mb-3">
+        <label for="variantStock" class="form-label">Stock</label>
+        <input type="number" class="form-control" name="stock" id="variantStock" placeholder="Input Variant Stock" th:field="*{stock}">
+    </div>
+    <div class="mb-3">
+        <label for="variantPrice" class="form-label">Price</label>
+        <input type="number" class="form-control" name="price" id="variantPrice" placeholder="Input Variant Price" th:field="*{price}">
+    </div>
+    <button type="submit" class="btn btn-primary" style="float: right;">Save</button>
+</form>

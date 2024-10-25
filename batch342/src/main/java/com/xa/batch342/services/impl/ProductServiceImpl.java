@@ -50,4 +50,13 @@ public class ProductServiceImpl implements ProductService{
         Product product = productRepository.getProductBySlug(slug);
         productRepository.deleteById(product.getId());
     }
+
+    @Override
+    public List<ProductResponseDto> getProductsByCategoryId(Long id) {
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+        modelMapper.getConfiguration().setSkipNullEnabled(true);
+        List<Product> products = productRepository.getProductListByCategoryId(id);
+        List<ProductResponseDto> productResponseDtos = products.stream().map(product -> modelMapper.map(product, ProductResponseDto.class)).collect(Collectors.toList());
+        return productResponseDtos;
+    }
 }

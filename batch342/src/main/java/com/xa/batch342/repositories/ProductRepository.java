@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.xa.batch342.entities.Product;
@@ -21,4 +22,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     @Query(value = "select * from spring.products where is_deleted = false and slug = ?1", nativeQuery = true)
     Product getProductBySlug(String Slug);
+
+    @Query(value = "select p from Product p where isDeleted = false and categoryId = :id")
+    List<Product> getProductListByCategoryId(@Param("id") Long id);
 }
