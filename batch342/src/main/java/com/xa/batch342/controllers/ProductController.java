@@ -79,6 +79,6 @@ public class ProductController {
     @GetMapping("/delete/{slug}")
     public ModelAndView deleteCategory(@PathVariable String slug) {
         productService.deleteProductBySlug(slug);
-        return new ModelAndView("redirect:/category");
+        return new ModelAndView("redirect:/product");
     }
 }

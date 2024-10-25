@@ -37,7 +37,7 @@ function deleteForm(slug) {
     });
 }
 
-function deleteCategory(slug) {
+function deleteProduct(slug) {
     $.ajax({
         type: "get",
         url: `/product/delete/${slug}`,
